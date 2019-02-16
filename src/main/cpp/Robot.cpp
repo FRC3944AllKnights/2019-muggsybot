@@ -19,6 +19,7 @@
 #include "LittleSuck.h"
 #include "Lifter.h"
 #include "BigSuck.h"
+#include "Arm.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -41,6 +42,10 @@ class Robot : public frc::TimedRobot {
     smolsuck.manualSuck(m_stick.GetRawButton(4), m_stick.GetRawButton(5));
     liftyboi.manualLift(m_stick.GetRawButton(12), m_stick.GetRawButton(11));
     bigboisuck.manualBigSuck(m_stick.GetRawButton(8), m_stick.GetRawButton(7));
+    arm.manualRotate(m_stick.GetRawButton(10), m_stick.GetRawButton(9), loops);
+    if (++loops >= 10) {
+		  loops = 0;
+	  }
   }
 
  private:
@@ -70,6 +75,8 @@ class Robot : public frc::TimedRobot {
   Drive MuggsyDrive;
   BigSuck bigboisuck;
   LittleSuck smolsuck;
+  Arm arm;
+  int loops = 0;
   frc::Joystick m_stick{kJoystickChannel};
   Lifter liftyboi;
 };

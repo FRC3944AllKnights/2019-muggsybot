@@ -17,18 +17,5 @@ Lifter::Lifter(){
     else {
         longlifty.Set(ControlMode::PercentOutput, 0);
     }
-
-
-    /*if (off){
-        sucking = false;
-    }
-    if(sucking){
-        smolsucker.Set(ControlMode::PercentOutput, suckSpeed);
-        releaseValve.Set(false);
-    }
-    else{
-        smolsucker.Set(ControlMode::PercentOutput, 0);
-        releaseValve.Set(true);
-    }*/
 };
 
