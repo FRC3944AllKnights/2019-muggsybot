@@ -2,6 +2,7 @@
 #define LIFTER_H
 
 #include <ctre/Phoenix.h>
+#include <Servo.h>
 
 class Lifter{
     public:
@@ -11,7 +12,10 @@ class Lifter{
 
     private:
         WPI_TalonSRX longlifty{13};
+        frc::Servo safetyServo{0};
         double growthspeed = .6;
+        double holdAngle = 0;
+        double releaseAngle = 0.5;
 };
 
 #endif
