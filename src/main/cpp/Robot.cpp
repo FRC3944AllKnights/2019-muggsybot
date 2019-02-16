@@ -29,7 +29,7 @@ class Robot : public frc::TimedRobot {
     visionThread.detach();
     MuggsyDrive.init();
     smolsuck.init();
-    bigboisuck.init();
+    bigboisuck.initBig();
   }
 
   void TeleopPeriodic() override {
@@ -40,7 +40,7 @@ class Robot : public frc::TimedRobot {
 
     smolsuck.manualSuck(m_stick.GetRawButton(4), m_stick.GetRawButton(5));
     liftyboi.manualLift(m_stick.GetRawButton(12), m_stick.GetRawButton(11));
-    bigboisuck.manualSuck(m_stick.GetRawButton(8), m_stick.GetRawButton(7));
+    bigboisuck.manualBigSuck(m_stick.GetRawButton(8), m_stick.GetRawButton(7));
   }
 
  private:
@@ -64,7 +64,7 @@ class Robot : public frc::TimedRobot {
             outputStream.PutFrame(mat);
         }
   }
-  
+
  //this is where to change variables
   static constexpr int kJoystickChannel = 0;
   Drive MuggsyDrive;
