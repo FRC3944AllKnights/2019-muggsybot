@@ -17,6 +17,7 @@
 
 #include "Drive.h"
 #include "LittleSuck.h"
+#include "Lifter.h"
 #include "BigSuck.h"
 
 class Robot : public frc::TimedRobot {
@@ -38,6 +39,7 @@ class Robot : public frc::TimedRobot {
     MuggsyDrive.mechanum(m_stick.GetX(), m_stick.GetY(), m_stick.GetZ(), m_stick.GetThrottle());
 
     smolsuck.manualSuck(m_stick.GetRawButton(4), m_stick.GetRawButton(5));
+    liftyboi.manualLift(m_stick.GetRawButton(12), m_stick.GetRawButton(11));
     bigboisuck.manualSuck(m_stick.GetRawButton(8), m_stick.GetRawButton(7));
   }
 
@@ -69,6 +71,7 @@ class Robot : public frc::TimedRobot {
   BigSuck bigboisuck;
   LittleSuck smolsuck;
   frc::Joystick m_stick{kJoystickChannel};
+  Lifter liftyboi;
 };
 
 #ifndef RUNNING_FRC_TESTS
