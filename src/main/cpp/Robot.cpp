@@ -17,6 +17,7 @@
 
 #include "Drive.h"
 #include "LittleSuck.h"
+#include "BigSuck.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -27,6 +28,7 @@ class Robot : public frc::TimedRobot {
     visionThread.detach();
     MuggsyDrive.init();
     smolsuck.init();
+    bigboisuck.init();
   }
 
   void TeleopPeriodic() override {
@@ -36,6 +38,7 @@ class Robot : public frc::TimedRobot {
     MuggsyDrive.mechanum(m_stick.GetX(), m_stick.GetY(), m_stick.GetZ(), m_stick.GetThrottle());
 
     smolsuck.manualSuck(m_stick.GetRawButton(4), m_stick.GetRawButton(5));
+    bigboisuck.manualSuck(m_stick.GetRawButton(8), m_stick.GetRawButton(7));
   }
 
  private:
@@ -63,10 +66,13 @@ class Robot : public frc::TimedRobot {
  //this is where to change variables
   static constexpr int kJoystickChannel = 0;
   Drive MuggsyDrive;
+  BigSuck bigboisuck;
   LittleSuck smolsuck;
   frc::Joystick m_stick{kJoystickChannel};
 };
 
 #ifndef RUNNING_FRC_TESTS
-int main() { return frc::StartRobot<Robot>(); }
+int main() { 
+  return frc::StartRobot<Robot>(); 
+}
 #endif
