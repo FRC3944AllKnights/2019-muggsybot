@@ -18,16 +18,18 @@
 #include "Drive.h"
 #include "LittleSuck.h"
 #include "Lifter.h"
+#include "BigSuck.h"
 
 class Robot : public frc::TimedRobot {
  public:
   void RobotInit() override {
     // Invert the left side motors. You may need to change or remove this to
     // match your robot.
-    //std::thread visionThread(VisionThread);
-    //visionThread.detach();
+    std::thread visionThread(VisionThread);
+    visionThread.detach();
     MuggsyDrive.init();
     smolsuck.init();
+    bigboisuck.init();
   }
 
   void TeleopPeriodic() override {
@@ -37,13 +39,12 @@ class Robot : public frc::TimedRobot {
     MuggsyDrive.mechanum(m_stick.GetX(), m_stick.GetY(), m_stick.GetZ(), m_stick.GetThrottle());
 
     smolsuck.manualSuck(m_stick.GetRawButton(4), m_stick.GetRawButton(5));
-    //lift.Set(ControlMode::PercentOutput, m_stick.GetY());
-
     liftyboi.manualLift(m_stick.GetRawButton(12), m_stick.GetRawButton(11));
+    bigboisuck.manualSuck(m_stick.GetRawButton(8), m_stick.GetRawButton(7));
   }
 
  private:
- /*
+ 
   static void VisionThread() {
     // Get the USB camera from CameraServer
     cs::UsbCamera camera =
@@ -63,15 +64,18 @@ class Robot : public frc::TimedRobot {
             outputStream.PutFrame(mat);
         }
   }
-  */
+  
  //this is where to change variables
   static constexpr int kJoystickChannel = 0;
   Drive MuggsyDrive;
+  BigSuck bigboisuck;
   LittleSuck smolsuck;
   frc::Joystick m_stick{kJoystickChannel};
   Lifter liftyboi;
 };
 
 #ifndef RUNNING_FRC_TESTS
-int main() { return frc::StartRobot<Robot>(); }
+int main() { 
+  return frc::StartRobot<Robot>(); 
+}
 #endif

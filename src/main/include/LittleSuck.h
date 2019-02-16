@@ -13,7 +13,7 @@ class LittleSuck{
     private:
         WPI_TalonSRX smolsucker{5};
         frc::Solenoid releaseValve{0};
-        double suckSpeed = 0.15;
+        double suckSpeed = 0.15; 
         bool sucking = false;
 };
 
