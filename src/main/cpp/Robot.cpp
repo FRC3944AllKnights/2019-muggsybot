@@ -17,6 +17,7 @@
 
 #include "Drive.h"
 #include "LittleSuck.h"
+#include "Lifter.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -37,6 +38,8 @@ class Robot : public frc::TimedRobot {
 
     smolsuck.manualSuck(m_stick.GetRawButton(4), m_stick.GetRawButton(5));
     //lift.Set(ControlMode::PercentOutput, m_stick.GetY());
+
+    liftyboi.manualLift(m_stick.GetRawButton(12), m_stick.GetRawButton(11));
   }
 
  private:
@@ -66,7 +69,7 @@ class Robot : public frc::TimedRobot {
   Drive MuggsyDrive;
   LittleSuck smolsuck;
   frc::Joystick m_stick{kJoystickChannel};
-  WPI_TalonSRX lift{13};
+  Lifter liftyboi;
 };
 
 #ifndef RUNNING_FRC_TESTS
