@@ -23,8 +23,8 @@ class Robot : public frc::TimedRobot {
   void RobotInit() override {
     // Invert the left side motors. You may need to change or remove this to
     // match your robot.
-    //std::thread visionThread(VisionThread);
-    //visionThread.detach();
+    std::thread visionThread(VisionThread);
+    visionThread.detach();
     MuggsyDrive.init();
     smolsuck.init();
   }
@@ -36,11 +36,10 @@ class Robot : public frc::TimedRobot {
     MuggsyDrive.mechanum(m_stick.GetX(), m_stick.GetY(), m_stick.GetZ(), m_stick.GetThrottle());
 
     smolsuck.manualSuck(m_stick.GetRawButton(4), m_stick.GetRawButton(5));
-    //lift.Set(ControlMode::PercentOutput, m_stick.GetY());
   }
 
  private:
- /*
+ 
   static void VisionThread() {
     // Get the USB camera from CameraServer
     cs::UsbCamera camera =
@@ -60,13 +59,12 @@ class Robot : public frc::TimedRobot {
             outputStream.PutFrame(mat);
         }
   }
-  */
+  
  //this is where to change variables
   static constexpr int kJoystickChannel = 0;
   Drive MuggsyDrive;
   LittleSuck smolsuck;
   frc::Joystick m_stick{kJoystickChannel};
-  WPI_TalonSRX lift{13};
 };
 
 #ifndef RUNNING_FRC_TESTS
