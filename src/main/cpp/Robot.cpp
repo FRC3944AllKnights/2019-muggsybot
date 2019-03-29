@@ -31,6 +31,7 @@ class Robot : public frc::TimedRobot {
     MuggsyDrive.init();
     smolsuck.init();
     bigboisuck.initBig();
+    liftyboi.init();
   }
 
   void TeleopPeriodic() override {
@@ -39,11 +40,11 @@ class Robot : public frc::TimedRobot {
      */
     MuggsyDrive.mechanum(m_stick.GetX(), m_stick.GetY(), m_stick.GetZ(), m_stick.GetThrottle());
 
-    smolsuck.manualSuck(m_stick.GetRawButton(4), m_stick.GetRawButton(5));
+    smolsuck.manualSuck(m_stick.GetRawButton(1), m_stick.GetRawButton(2));
     liftyboi.manualLift(m_stick.GetRawButton(12), m_stick.GetRawButton(11));
     bigboisuck.manualBigSuck(m_stick.GetRawButton(8), m_stick.GetRawButton(7));
     arm.manualRotate(m_stick.GetRawButton(10), m_stick.GetRawButton(9), loops);
-    if (++loops >= 10) {
+    if (++loops > 100) {
 		  loops = 0;
 	  }
   }

@@ -16,7 +16,12 @@ void LittleSuck::manualSuck(bool on, bool off){
         sucking = false;
     }
     if(sucking){
-        smolsucker.Set(ControlMode::PercentOutput, suckSpeed);
+        if (pressure.GetAverageVoltage() < .8){
+            smolsucker.Set(ControlMode::PercentOutput, suckSpeed);
+        }
+        else{
+            smolsucker.Set(ControlMode::PercentOutput, 0);
+        }
         releaseValve.Set(false);
     }
     else{

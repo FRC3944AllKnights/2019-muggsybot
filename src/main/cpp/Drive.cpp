@@ -12,8 +12,8 @@ void Drive::init(){
 
 void Drive::mechanum(double x, double y, double z, double throttle){
     throttle = (throttle-1.0)/(-2.0);
-    z = z/(-2.0)*throttle;
+    z = z/(-2.0);
     x = x*(-1.0)*throttle;
     y = y*throttle;
-    m_robotDrive.DriveCartesian(x, y, z);
+    m_robotDrive.DriveCartesian(-x, y, z);
 };

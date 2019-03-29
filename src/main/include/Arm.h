@@ -2,7 +2,7 @@
 #define ARM_H
 
 #include <ctre/Phoenix.h>
-#include "frc/AnalogPotentiometer.h"
+#include "frc/AnalogInput.h"
 
 class Arm{
     public:
@@ -11,8 +11,8 @@ class Arm{
         void manualRotate(bool foward, bool reverse, int count);
 
     private:
-        WPI_TalonSRX armMotor{14};
-        frc::AnalogPotentiometer pot{0, 180, 30};
+        WPI_TalonSRX armMotor{15};
+        frc::AnalogInput pot{1};
         double rotatespeed = .3;
         double armPosition = 0;
         std::string sb;

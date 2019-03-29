@@ -3,6 +3,7 @@
 
 #include <ctre/Phoenix.h>
 #include <frc/Solenoid.h>
+#include "frc/AnalogInput.h"
 
 class LittleSuck{
     public:
@@ -11,10 +12,11 @@ class LittleSuck{
         void manualSuck(bool on, bool off);
 
     private:
-        WPI_TalonSRX smolsucker{5};
+        WPI_TalonSRX smolsucker{13};
         frc::Solenoid releaseValve{0};
-        double suckSpeed = 0.15; 
-        bool sucking = false;
+        frc::AnalogInput pressure{0};
+        double suckSpeed = 0.25; 
+        bool sucking = true;
 };
 
 #endif
