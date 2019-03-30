@@ -5,6 +5,7 @@ Lifter::Lifter(){
 
  void Lifter::init(){
      lifterServo.Set(liftHoldAngle);
+     armServo.Set(armHoldAngle);
 };
 
  void Lifter::manualLift(bool foward, bool reverse){
@@ -13,8 +14,12 @@ Lifter::Lifter(){
         if(lifterServo.Get() < liftReleaseAngle - 0.05){
             longlifty.Set(ControlMode::PercentOutput, 0);
         }
-        else{
+        else if(limitSwitch.Get() == true){
             longlifty.Set(ControlMode::PercentOutput, growthspeed);
+        }
+        else{
+            longlifty.Set(ControlMode::PercentOutput, 0);
+            armServo.Set(armReleaseAngle);
         }
     }
     else if (reverse) {

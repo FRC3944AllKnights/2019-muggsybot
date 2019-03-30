@@ -2,7 +2,8 @@
 #define LIFTER_H
 
 #include <ctre/Phoenix.h>
-#include <Servo.h>
+#include <frc/Servo.h>
+#include <frc/DigitalInput.h>
 
 class Lifter{
     public:
@@ -13,9 +14,13 @@ class Lifter{
     private:
         WPI_TalonSRX longlifty{14};
         frc::Servo lifterServo{8};
+        frc::Servo armServo{9};
+        frc::DigitalInput limitSwitch{0};
         double growthspeed = .8;
         double liftHoldAngle = 0.43;
         double liftReleaseAngle = 0.8;
+        double armHoldAngle = 0.8;
+        double armReleaseAngle = 0.4;
 };
 
 #endif

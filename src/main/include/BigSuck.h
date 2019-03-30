@@ -2,7 +2,6 @@
 #define BIGSUCK_H
 
 #include <ctre/Phoenix.h>
-#include <Servo.h>
 
 class BigSuck{
     public:
@@ -15,12 +14,9 @@ class BigSuck{
         WPI_TalonSRX bigsucker1{10};
         WPI_TalonSRX bigsucker2{11};
         WPI_TalonSRX bigsucker3{12};
-        frc::Servo armServo{9};
 
         double ultraMegaSuperSuccSpeed = 0.15;
         bool sucking = false;
-        double armHoldAngle = 0.8;
-        double armReleaseAngle = 0.4;
 };
 
 #endif
