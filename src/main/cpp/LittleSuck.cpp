@@ -16,7 +16,7 @@ void LittleSuck::manualSuck(bool on, bool off){
         sucking = false;
     }
     if(sucking){
-        if (pressure.GetAverageVoltage() < .95){
+        if (pressure.GetAverageVoltage() < 1.5){
             smolsucker.Set(ControlMode::PercentOutput, suckSpeed);
         }
         else{

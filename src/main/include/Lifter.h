@@ -13,8 +13,8 @@ class Lifter{
 
     private:
         WPI_TalonSRX longlifty{14};
-        frc::Servo lifterServo{8};
-        frc::Servo armServo{9};
+        frc::Servo lifterServo{1};
+        frc::Servo armServo{0};
         frc::DigitalInput limitSwitch{0};
         double growthspeed = .8;
         double liftHoldAngle = 0.43;

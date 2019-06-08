@@ -15,15 +15,15 @@ void Drive::mechanum(double x, double y, double z, bool backslow, bool frontslow
         m_robotDrive.DriveCartesian(0, 0.12, 0);
     }
     else if(frontslow){
-        z = z/(-2.0)*throttle*.7;
-        x = x*(-1.0)*throttle*.7;
+        z = z/(-2.0)*throttle*.25;
+        x = x*(-1.0)*throttle*.25;
         y = y*throttle*.25;
-        m_robotDrive.DriveCartesian(-x, y, z);
+        m_robotDrive.DriveCartesian(x, y, z);
     }
     else{
         z = z/(-2.0)*throttle;
         x = x*(-1.0)*throttle;
         y = y*throttle;
-        m_robotDrive.DriveCartesian(-x, y, z);
+        m_robotDrive.DriveCartesian(x, y, z);
     }
 };
