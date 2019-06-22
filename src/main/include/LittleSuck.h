@@ -17,6 +17,8 @@ class LittleSuck{
         frc::AnalogInput pressure{1};
         double suckSpeed = 0.25; 
         bool sucking = true;
+        int count;
+        double vac;
 };
 
 #endif

@@ -17,11 +17,5 @@ Arm::Arm(){
     else {
         armMotor.Set(ControlMode::PercentOutput, 0);
     }
-    if (count >= 100){
-        armPosition = pot.GetAverageVoltage();
-        sb.append("\tArm Position: ");
-	    sb.append(std::to_string(armPosition));
-        printf("%s\n", sb.c_str());
-        sb = "";
-    }
+    
 };

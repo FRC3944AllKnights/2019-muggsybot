@@ -6,9 +6,11 @@ LittleSuck::LittleSuck(){
 void LittleSuck::init(){
     smolsucker.Set(ControlMode::PercentOutput, 0);
     releaseValve.Set(false);
+    count = 0;
 };
 
 void LittleSuck::manualSuck(bool on, bool off){
+    count = count + 1;
     if (on){
         sucking = true;
     }
@@ -17,7 +19,7 @@ void LittleSuck::manualSuck(bool on, bool off){
     }
     if(sucking){
         //bigboi
-        if(suckSensor.GetAverageValue() > 0.95){
+        if(pressure.GetAverageValue() > 0.95){
             smolsucker.Set(ControlMode::PercentOutput, suckSpeed);
             releaseValve.Set(false);
         }
@@ -29,5 +31,13 @@ void LittleSuck::manualSuck(bool on, bool off){
     else{        
         smolsucker.Set(ControlMode::PercentOutput, 0);
         releaseValve.Set(true);
+    }
+    if (count >= 100){
+        vac = pressure.GetAverageValue();
+        sb.append("\tValue: ");
+	    sb.append(std::to_string(vac));
+        printf("%s\n", sb.c_str());
+        sb = "";
+        count = 0;
     }
 };
