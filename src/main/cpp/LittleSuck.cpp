@@ -19,7 +19,7 @@ void LittleSuck::manualSuck(bool on, bool off){
     }
     if(sucking){
         //bigboi
-        if(pressure.GetAverageValue() > 0.95){
+        if(pressure.GetAverageValue() < 200){
             smolsucker.Set(ControlMode::PercentOutput, suckSpeed);
             releaseValve.Set(false);
         }
