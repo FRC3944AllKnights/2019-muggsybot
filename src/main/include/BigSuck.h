@@ -11,9 +11,9 @@ class BigSuck{
 
     private:
     //this is a comment so you never forget
-        WPI_VictorSPX bigsucker1{10};
+        WPI_TalonSRX bigsucker1{10}; 
         WPI_TalonSRX bigsucker2{11};
-        WPI_VictorSPX bigsucker3{12};
+        WPI_TalonSRX bigsucker3{12};
 
         double ultraMegaSuperSuccSpeed = 0.15;
         bool sucking = false;

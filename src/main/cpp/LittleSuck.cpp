@@ -16,10 +16,17 @@ void LittleSuck::manualSuck(bool on, bool off){
         sucking = false;
     }
     if(sucking){
-        smolsucker.Set(ControlMode::PercentOutput, suckSpeed);
-        releaseValve.Set(false);
+        //bigboi
+        if(suckSensor.GetAverageValue() > 0.95){
+            smolsucker.Set(ControlMode::PercentOutput, suckSpeed);
+            releaseValve.Set(false);
+        }
+        else{
+            smolsucker.Set(ControlMode::PercentOutput, 0);
+            releaseValve.Set(true);
+        }    
     }
-    else{
+    else{        
         smolsucker.Set(ControlMode::PercentOutput, 0);
         releaseValve.Set(true);
     }

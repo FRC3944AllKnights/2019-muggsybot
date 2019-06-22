@@ -11,7 +11,7 @@ class Lifter{
         void manualLift(bool foward, bool reverse);
 
     private:
-        WPI_TalonSRX longlifty{13};
+        WPI_TalonSRX longlifty{14};
         frc::Servo safetyServo{0};
         double growthspeed = .6;
         double holdAngle = 0;
