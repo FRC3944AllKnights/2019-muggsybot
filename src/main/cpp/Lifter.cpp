@@ -4,21 +4,26 @@ Lifter::Lifter(){
 };
 
  void Lifter::init(){
-     safetyServo.Set(holdAngle);
+     lifterServo.Set(liftHoldAngle);
+     armServo.Set(armHoldAngle);
 };
 
  void Lifter::manualLift(bool foward, bool reverse){
     if (foward) {
-        safetyServo.Set(releaseAngle);
-        if(safetyServo.Get() < releaseAngle - 0.05){
+        lifterServo.Set(liftReleaseAngle);
+        armServo.Set(armReleaseAngle);
+        if(lifterServo.Get() < liftReleaseAngle - 0.05){
             longlifty.Set(ControlMode::PercentOutput, 0);
         }
+        else if(limitSwitch.Get() == true){
+            longlifty.Set(ControlMode::PercentOutput, growthspeed);
+        }
         else{
-            longlifty.Set(ControlMode::PercentOutput, -growthspeed);
+            longlifty.Set(ControlMode::PercentOutput, 0);
         }
     }
     else if (reverse) {
-        longlifty.Set(ControlMode::PercentOutput, growthspeed*.25);
+        longlifty.Set(ControlMode::PercentOutput, -growthspeed*.5);
     }
 
     else {
