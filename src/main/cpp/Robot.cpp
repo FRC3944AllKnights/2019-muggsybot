@@ -14,6 +14,7 @@
 #include <wpi/raw_ostream.h>
 #include <frc/TimedRobot.h>
 #include <frc/Joystick.h>
+#include <frc/SmartDashboard/SmartDashboard.h>
 
 #include "Drive.h"
 #include "LittleSuck.h"
@@ -32,6 +33,7 @@ class Robot : public frc::TimedRobot {
     smolsuck.init();
     bigboisuck.initBig();
     liftyboi.init();
+    frc::SmartDashboard::init();
   }
 
   void AutonomousPeriodic() {
@@ -54,6 +56,7 @@ class Robot : public frc::TimedRobot {
     smolsuck.manualSuck(m_stick.GetRawButton(1), m_stick.GetRawButton(2));
     liftyboi.manualLift(m_stick.GetRawButton(12), m_stick.GetRawButton(11));
     bigboisuck.manualBigSuck(m_stick.GetRawButton(8), m_stick.GetRawButton(7));
+    frc::SmartDashboard::PutBoolean("1 pressed", m_stick.GetRawButton(1));
   }
 
  private:

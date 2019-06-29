@@ -24,15 +24,17 @@ void LittleSuck::manualSuck(bool on, bool off){
         }
         else{
             smolsucker.Set(ControlMode::PercentOutput, 0);
-            releaseValve.Set(true);
         }    
     }
     else{        
         smolsucker.Set(ControlMode::PercentOutput, 0);
         releaseValve.Set(true);
     }
+
+    frc::SmartDashboard::PutNumber(" Voltage ", pressure.GetAverageVoltage());
+
     if (count >= 100){
-        vac = pressure.GetAverageValue();
+        vac = pressure.GetAverageVoltage();
         sb.append("\tValue: ");
 	    sb.append(std::to_string(vac));
         printf("%s\n", sb.c_str());

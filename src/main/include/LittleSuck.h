@@ -4,6 +4,7 @@
 #include <ctre/Phoenix.h>
 #include <frc/Solenoid.h>
 #include "frc/AnalogInput.h"
+#include <frc/SmartDashboard/SmartDashboard.h>
 
 class LittleSuck{
     public:
