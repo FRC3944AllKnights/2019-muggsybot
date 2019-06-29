@@ -15,9 +15,12 @@ class LittleSuck{
         WPI_TalonSRX smolsucker{13};
         frc::Solenoid releaseValve{0};
 <<<<<<< HEAD
+<<<<<<< HEAD
         frc::AnalogInput pressure{1};
         double suckSpeed = 0.20; 
 =======
+=======
+>>>>>>> parent of 2fe2370... most up to date
         frc::AnalogInput pressure{0};
         double suckSpeed = 0.25; 
 >>>>>>> parent of 2fe2370... most up to date
