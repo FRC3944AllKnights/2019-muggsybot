@@ -34,17 +34,6 @@ class Robot : public frc::TimedRobot {
     liftyboi.init();
   }
 
-  void AutonomousPeriodic() {
-    /* Use the joystick X axis for lateral movement, Y axis for forward
-     * movement, and Z axis for rotation.
-     */
-    MuggsyDrive.mechanum(m_stick.GetX(), m_stick.GetY(), m_stick.GetZ(), m_stick.GetRawButton(2), m_stick.GetRawButton(1));
-
-    smolsuck.manualSuck(m_stick.GetRawButton(1), m_stick.GetRawButton(2));
-    liftyboi.manualLift(m_stick.GetRawButton(12), m_stick.GetRawButton(11));
-    bigboisuck.manualBigSuck(m_stick.GetRawButton(8), m_stick.GetRawButton(7));
-  }
-
   void TeleopPeriodic() override {
     /* Use the joystick X axis for lateral movement, Y axis for forward
      * movement, and Z axis for rotation.
@@ -54,6 +43,10 @@ class Robot : public frc::TimedRobot {
     smolsuck.manualSuck(m_stick.GetRawButton(1), m_stick.GetRawButton(2));
     liftyboi.manualLift(m_stick.GetRawButton(12), m_stick.GetRawButton(11));
     bigboisuck.manualBigSuck(m_stick.GetRawButton(8), m_stick.GetRawButton(7));
+    arm.manualRotate(m_stick.GetRawButton(10), m_stick.GetRawButton(9), loops);
+    if (++loops > 100) {
+		  loops = 0;
+	  }
   }
 
  private:
@@ -63,21 +56,19 @@ class Robot : public frc::TimedRobot {
     cs::UsbCamera camera =
         frc::CameraServer::GetInstance()->StartAutomaticCapture("0", 0);
     // Set the resolution
-    camera.SetFPS(10);
-    camera.SetResolution(128, 72);
-    //frc::CameraServer::GetInstance()->StartAutomaticCapture(camera);
+    camera.SetResolution(240, 144);
     // Get a CvSink. This will capture Mats from the Camera
     cs::CvSink cvSink = frc::CameraServer::GetInstance()->GetVideo();
     cs::CvSource outputStream =
-        frc::CameraServer::GetInstance()->PutVideo("gray", 128, 72);
-    //Mats are very memory expensive. Lets reuse this Mat.
+        frc::CameraServer::GetInstance()->PutVideo("gray", 240, 144);
+    // Mats are very memory expensive. Lets reuse this Mat.
     cv::Mat mat;
 
     while(true) {
             cvSink.GrabFrame(mat);
             cvtColor(mat, mat, cv::COLOR_BGR2GRAY);
             outputStream.PutFrame(mat);
-       }
+        }
   }
 
  //this is where to change variables

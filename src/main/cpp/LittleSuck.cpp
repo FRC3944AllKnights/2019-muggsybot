@@ -18,8 +18,12 @@ void LittleSuck::manualSuck(bool on, bool off){
         sucking = false;
     }
     if(sucking){
+<<<<<<< HEAD
         //bigboi
         if(pressure.GetAverageValue() < 200){
+=======
+        if (pressure.GetAverageVoltage() < .95){
+>>>>>>> parent of 2fe2370... most up to date
             smolsucker.Set(ControlMode::PercentOutput, suckSpeed);
             releaseValve.Set(false);
         }

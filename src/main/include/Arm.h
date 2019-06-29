@@ -12,7 +12,7 @@ class Arm{
 
     private:
         WPI_TalonSRX armMotor{15};
-        frc::AnalogInput pot {3};
+        frc::AnalogInput pot{1};
         double rotatespeed = .3;
         double armPosition = 0;
         std::string sb;
