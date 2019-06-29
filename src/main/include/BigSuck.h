@@ -2,6 +2,7 @@
 #define BIGSUCK_H
 
 #include <ctre/Phoenix.h>
+#include "frc/AnalogInput.h"
 
 class BigSuck{
     public:
@@ -15,7 +16,9 @@ class BigSuck{
         WPI_TalonSRX bigsucker2{11};
         WPI_TalonSRX bigsucker3{12};
 
-        double ultraMegaSuperSuccSpeed = 0.15;
+        frc::AnalogInput pressure1 {0};
+        frc::AnalogInput pressure2 {2};
+        double ultraMegaSuperSuccSpeed = 0.25;
         bool sucking = false;
 };
 
