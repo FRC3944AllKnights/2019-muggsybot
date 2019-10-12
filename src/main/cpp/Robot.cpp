@@ -15,6 +15,8 @@
 #include <frc/TimedRobot.h>
 #include <frc/Joystick.h>
 #include <frc/SmartDashboard/SmartDashboard.h>
+#include "networktables/NetworkTable.h"
+#include "networktables/NetworkTableInstance.h"
 
 #include "Drive.h"
 #include "LittleSuck.h"
@@ -40,7 +42,13 @@ class Robot : public frc::TimedRobot {
     /* Use the joystick X axis for lateral movement, Y axis for forward
      * movement, and Z axis for rotation.
      */
-    MuggsyDrive.mechanum(m_stick.GetX(), m_stick.GetY(), m_stick.GetZ(), m_stick.GetRawButton(2), m_stick.GetRawButton(1));
+    std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+    double Xoffset = table->GetNumber("tx",0.0);
+    double Yoffset = table->GetNumber("ty",0.0);
+    double targetArea = table->GetNumber("ta",0.0);
+    double targetSkew = table->GetNumber("ts",0.0);
+
+    MuggsyDrive.mechanum(m_stick.GetX(), m_stick.GetY(), m_stick.GetZ(), m_stick.GetRawButton(2), m_stick.GetRawButton(1), m_stick.GetRawButton(4), Xoffset);
 
     smolsuck.manualSuck(m_stick.GetRawButton(1), m_stick.GetRawButton(2));
     liftyboi.manualLift(m_stick.GetRawButton(12), m_stick.GetRawButton(11));
@@ -51,12 +59,23 @@ class Robot : public frc::TimedRobot {
     /* Use the joystick X axis for lateral movement, Y axis for forward
      * movement, and Z axis for rotation.
      */
-    MuggsyDrive.mechanum(m_stick.GetX(), m_stick.GetY(), m_stick.GetZ(), m_stick.GetRawButton(2), m_stick.GetRawButton(1));
+    std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+    double Xoffset = table->GetNumber("tx",0.0);
+    double Yoffset = table->GetNumber("ty",0.0);
+    double targetArea = table->GetNumber("ta",0.0);
+    double targetSkew = table->GetNumber("ts",0.0);
+
+    MuggsyDrive.mechanum(m_stick.GetX(), m_stick.GetY(), m_stick.GetZ(), m_stick.GetRawButton(2), m_stick.GetRawButton(1), m_stick.GetRawButton(4), Xoffset);
 
     smolsuck.manualSuck(m_stick.GetRawButton(1), m_stick.GetRawButton(2));
     liftyboi.manualLift(m_stick.GetRawButton(12), m_stick.GetRawButton(11));
     bigboisuck.manualBigSuck(m_stick.GetRawButton(8), m_stick.GetRawButton(7));
     frc::SmartDashboard::PutBoolean("1 pressed", m_stick.GetRawButton(1));
+
+    frc::SmartDashboard::PutNumber("X offset", Xoffset);
+    frc::SmartDashboard::PutNumber("Y offset", Yoffset);
+    frc::SmartDashboard::PutNumber("Area", targetArea);
+    frc::SmartDashboard::PutNumber("Skew", targetSkew);
   }
 
  private:
